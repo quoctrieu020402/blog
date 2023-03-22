@@ -17,7 +17,7 @@ public class Post {
     @Id
     private Long postId;
 
-    @Column(length = 500)
+    @Column(length = 500, nullable = false)
     private String title;
 
     @Column(length = 5000)

@@ -15,7 +15,7 @@ public class Comment {
     @Id
     private Long commentId;
 
-    @Column(length = 5000)
+    @Column(length = 5000,nullable = false)
     private String comment;
 
     @ManyToOne
