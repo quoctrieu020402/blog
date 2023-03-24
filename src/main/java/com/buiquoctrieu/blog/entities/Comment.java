@@ -13,15 +13,14 @@ import javax.persistence.*;
 @Data
 public class Comment {
     @Id
-    private Long commentId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(length = 5000,nullable = false)
     private String comment;
-
     @ManyToOne
     @JoinColumn(name = "user_id",nullable = false)
     private User user;
-
     @ManyToOne
     @JoinColumn(name = "post_id",nullable = false)
     private Post post;

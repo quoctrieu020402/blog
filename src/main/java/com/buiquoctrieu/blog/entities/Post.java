@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,21 +16,24 @@ import java.util.List;
 @Data
 public class Post {
     @Id
-    private Long postId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(length = 500, nullable = false)
     private String title;
 
-    @Column(length = 5000)
+    @Column(length = 10000)
     private String content;
 
     @Column(length = 500)
     private String image;
 
+    private Date addDate;
+
+    private boolean status = true;
     @ManyToOne
     @JoinColumn(name = "category_id",nullable = false)
     private Category category;
-
     @ManyToOne
     @JoinColumn(name = "user_id",nullable = false)
     private User user;

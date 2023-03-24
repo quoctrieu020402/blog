@@ -8,6 +8,5 @@ import java.util.Optional;
 
 public interface CategoryRepository extends JpaRepository<Category,Long> {
     Optional<Category> findByTitle(String title);
-
     List<Category> findByStatus(boolean b);
 }

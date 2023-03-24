@@ -20,31 +20,41 @@ public class UserController {
 
     @PostMapping("/")
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest) {
+
         UserResponse createUserResponse = this.userService.createUser(userRequest);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(createUserResponse);
     }
 
     @PutMapping("/{userId}")
     public ResponseEntity<UserResponse> updateUser(@Valid @RequestBody UserRequest userRequest, @PathVariable(name = "userId") Long id) {
+
         UserResponse updateUserResponse = this.userService.updateUser(userRequest, id);
+
         return ResponseEntity.status(HttpStatus.OK).body(updateUserResponse);
     }
 
     @DeleteMapping("/{userId}")
     public ResponseEntity<MessageResponse> deleteUser(@PathVariable(name = "userId") Long id) {
+
         this.userService.deleteUser(id);
+
         return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("User deleted successfully"));
     }
 
     @GetMapping("/")
     public ResponseEntity<List<UserResponse>> getAllUsers(){
+
         List<UserResponse> userResponseList = this.userService.getAllUsers();
+
         return ResponseEntity.status(HttpStatus.OK).body(userResponseList);
     }
 
     @GetMapping("/{userId}")
     public ResponseEntity<UserResponse> getUser(@PathVariable(name = "userId") Long id){
+
         UserResponse userResponse = this.userService.getUserById(id);
+
         return ResponseEntity.status(HttpStatus.OK).body(userResponse);
     }
 }

@@ -28,12 +28,15 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse createCategory(CategoryRequest categoryRequest) {
+
         Category  category = this.modelMapper.map(categoryRequest,Category.class);
 
         Optional<Category> findCategory = this.categoryRepository.findByTitle(category.getTitle());
 
         if (findCategory.isPresent()){
+
             throw new BadRequestException("Category", "title", category.getTitle());
+
         }
 
         Category saveCategory = this.categoryRepository.save(category);
@@ -43,9 +46,11 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse updateCategory(CategoryRequest categoryRequest, Long id) {
+
         Category findCategory = this.categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Category", "id", String.valueOf(id)));
 
         findCategory.setTitle(categoryRequest.getTitle());
+
         findCategory.setDescription(categoryRequest.getDescription());
 
         Category updateCategory = this.categoryRepository.save(findCategory);
@@ -55,21 +60,29 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse getCategoryById(Long id) {
+
         Category findCategory = this.categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Category", "id", String.valueOf(id)));
+
         return this.modelMapper.map(findCategory,CategoryResponse.class);
     }
 
     @Override
     public List<CategoryResponse> getAllCategory() {
+
         List<Category> categories = this.categoryRepository.findByStatus(true);
+
         List<CategoryResponse> categoryResponses = categories.stream().map(user -> this.modelMapper.map(user,CategoryResponse.class)).collect(Collectors.toList());
+
         return categoryResponses;
     }
 
     @Override
     public void deleteCategory(Long id) {
+
         Category findCategory = this.categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Category", "id", String.valueOf(id)));
+
         findCategory.setStatus(false);
+
         this.categoryRepository.save(findCategory);
     }
 }

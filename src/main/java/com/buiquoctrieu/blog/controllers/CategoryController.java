@@ -23,31 +23,41 @@ public class CategoryController {
 
     @PostMapping("/")
     public ResponseEntity<CategoryResponse> createCategory(@Valid @RequestBody CategoryRequest categoryRequest) {
+
         CategoryResponse createCategoryResponse = this.categoryService.createCategory(categoryRequest);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(createCategoryResponse);
     }
 
     @PutMapping("/{categoryId}")
     public ResponseEntity<CategoryResponse> updateCategory(@Valid @RequestBody CategoryRequest categoryRequest, @PathVariable(name = "categoryId") Long id) {
+
         CategoryResponse updateCategoryResponse = this.categoryService.updateCategory(categoryRequest, id);
+
         return ResponseEntity.status(HttpStatus.OK).body(updateCategoryResponse);
     }
 
     @DeleteMapping("/{categoryId}")
     public ResponseEntity<MessageResponse> deleteCategory(@PathVariable(name = "categoryId") Long id) {
+
         this.categoryService.deleteCategory(id);
+
         return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Category deleted successfully"));
     }
 
     @GetMapping("/")
     public ResponseEntity<List<CategoryResponse>> getAllCategories(){
+
         List<CategoryResponse> categoryResponses = this.categoryService.getAllCategory();
+
         return ResponseEntity.status(HttpStatus.OK).body(categoryResponses);
     }
 
     @GetMapping("/{categoryId}")
     public ResponseEntity<CategoryResponse> getCategory(@PathVariable(name = "categoryId") Long id){
+
         CategoryResponse categoryResponse = this.categoryService.getCategoryById(id);
+
         return ResponseEntity.status(HttpStatus.OK).body(categoryResponse);
     }
 }
