@@ -21,6 +21,8 @@ public class PostResponse {
 
     private Date addDate;
 
+    private String image;
+
     private CategoryResponse category;
 
     private UserResponse user;

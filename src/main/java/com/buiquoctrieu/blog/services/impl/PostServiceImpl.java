@@ -47,7 +47,7 @@ public class PostServiceImpl implements PostService {
 
         Post post = this.modelMapper.map(postRequest,Post.class);
 
-        post.setImage("");
+        post.setImage("default.png");
 
         post.setAddDate(new Date());
 
@@ -69,7 +69,7 @@ public class PostServiceImpl implements PostService {
 
         findPost.setContent(postRequest.getContent());
 
-        findPost.setImage((postRequest.getImage()));
+        findPost.setImage(postRequest.getImage());
 
         Post updatePost = this.postRepository.save(findPost);
 
