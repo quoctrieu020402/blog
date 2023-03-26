@@ -17,10 +17,11 @@ public class Comment {
     private Long id;
 
     @Column(length = 5000,nullable = false)
-    private String comment;
+    private String content;
     @ManyToOne
     @JoinColumn(name = "user_id",nullable = false)
     private User user;
+
     @ManyToOne
     @JoinColumn(name = "post_id",nullable = false)
     private Post post;

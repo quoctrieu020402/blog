@@ -6,9 +6,11 @@ import com.buiquoctrieu.blog.payloads.response.UserResponse;
 import java.util.List;
 
 public interface UserService {
-    UserResponse createUser(UserRequest userRequest);
+
     UserResponse updateUser(UserRequest userRequest, Long id);
     UserResponse getUserById(Long id);
     List<UserResponse> getAllUsers();
     void deleteUser(Long id);
+
+    UserResponse registerUser(UserRequest userRequest);
 }

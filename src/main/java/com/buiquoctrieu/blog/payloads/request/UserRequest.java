@@ -1,5 +1,6 @@
 package com.buiquoctrieu.blog.payloads.request;
 
+import com.buiquoctrieu.blog.entities.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,6 +8,7 @@ import lombok.Setter;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -25,4 +27,6 @@ public class UserRequest {
     private String password;
 
     private String about;
+
+    private Set<String> roles;
 }

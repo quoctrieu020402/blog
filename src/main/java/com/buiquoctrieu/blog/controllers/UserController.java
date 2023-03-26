@@ -18,13 +18,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/")
-    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest) {
-
-        UserResponse createUserResponse = this.userService.createUser(userRequest);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(createUserResponse);
-    }
 
     @PutMapping("/{userId}")
     public ResponseEntity<UserResponse> updateUser(@Valid @RequestBody UserRequest userRequest, @PathVariable(name = "userId") Long id) {
